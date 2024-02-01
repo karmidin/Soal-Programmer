@@ -18,7 +18,7 @@ namespace Soal_Programmer
         SqlCommand command;
         SqlDataAdapter dataAdapter;
         DataTable dtRecord;
-        string connectionString;
+        string connectionString = @"Data Source=LAPTOP-PKU2D3E7\SQLEXPRESS;Initial Catalog=soal_Programmerdb;Trusted_Connection=True;";
         public frm2()
         {
             InitializeComponent();
@@ -26,7 +26,6 @@ namespace Soal_Programmer
 
         private void btnSaveEdit_Click(object sender, EventArgs e)
         {
-            connectionString = @"Data Source=LAPTOP-PKU2D3E7\SQLEXPRESS;Initial Catalog=soal_Programmerdb;Trusted_Connection=True;";
             using (con = new SqlConnection(connectionString))
             {
                 con.Open();

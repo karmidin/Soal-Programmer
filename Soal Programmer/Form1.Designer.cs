@@ -42,7 +42,7 @@
             this.txtnamaKaryawan2 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.soalProgrammerdbDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.soal_ProgrammerdbDataSet1 = new Soal_Programmer.soal_ProgrammerdbDataSet();
@@ -53,7 +53,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dtpTanggal1 = new System.Windows.Forms.DateTimePicker();
             this.dtpTanggal2 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soalProgrammerdbDataSet1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soal_ProgrammerdbDataSet1)).BeginInit();
@@ -64,7 +64,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 19);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.Size = new System.Drawing.Size(74, 16);
             this.label9.TabIndex = 0;
             this.label9.Text = "Filter Data :";
             // 
@@ -73,7 +73,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(12, 55);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.Size = new System.Drawing.Size(106, 16);
             this.label10.TabIndex = 1;
             this.label10.Text = "Nama Karyawan";
             // 
@@ -82,17 +82,16 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(12, 113);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 13);
+            this.label11.Size = new System.Drawing.Size(104, 16);
             this.label11.TabIndex = 2;
             this.label11.Text = "Tgl Masuk Kerja";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(12, 84);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 13);
+            this.label12.Size = new System.Drawing.Size(35, 16);
             this.label12.TabIndex = 3;
             this.label12.Text = "Usia";
             // 
@@ -100,14 +99,14 @@
             // 
             this.txtnamaKaryawan1.Location = new System.Drawing.Point(126, 52);
             this.txtnamaKaryawan1.Name = "txtnamaKaryawan1";
-            this.txtnamaKaryawan1.Size = new System.Drawing.Size(152, 20);
+            this.txtnamaKaryawan1.Size = new System.Drawing.Size(152, 22);
             this.txtnamaKaryawan1.TabIndex = 4;
             // 
             // txtUsia1
             // 
             this.txtUsia1.Location = new System.Drawing.Point(126, 84);
             this.txtUsia1.Name = "txtUsia1";
-            this.txtUsia1.Size = new System.Drawing.Size(152, 20);
+            this.txtUsia1.Size = new System.Drawing.Size(152, 22);
             this.txtUsia1.TabIndex = 7;
             // 
             // label13
@@ -115,7 +114,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(338, 58);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(23, 13);
+            this.label13.Size = new System.Drawing.Size(26, 16);
             this.label13.TabIndex = 8;
             this.label13.Text = "s/d";
             // 
@@ -124,7 +123,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(338, 122);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(23, 13);
+            this.label14.Size = new System.Drawing.Size(26, 16);
             this.label14.TabIndex = 9;
             this.label14.Text = "s/d";
             // 
@@ -133,7 +132,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(338, 90);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(23, 13);
+            this.label15.Size = new System.Drawing.Size(26, 16);
             this.label15.TabIndex = 10;
             this.label15.Text = "s/d";
             // 
@@ -141,14 +140,14 @@
             // 
             this.txtUsia2.Location = new System.Drawing.Point(386, 87);
             this.txtUsia2.Name = "txtUsia2";
-            this.txtUsia2.Size = new System.Drawing.Size(152, 20);
+            this.txtUsia2.Size = new System.Drawing.Size(152, 22);
             this.txtUsia2.TabIndex = 13;
             // 
             // txtnamaKaryawan2
             // 
             this.txtnamaKaryawan2.Location = new System.Drawing.Point(386, 55);
             this.txtnamaKaryawan2.Name = "txtnamaKaryawan2";
-            this.txtnamaKaryawan2.Size = new System.Drawing.Size(152, 20);
+            this.txtnamaKaryawan2.Size = new System.Drawing.Size(152, 22);
             this.txtnamaKaryawan2.TabIndex = 11;
             // 
             // btnSearch
@@ -166,17 +165,19 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(12, 153);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(117, 13);
+            this.label16.Size = new System.Drawing.Size(146, 16);
             this.label16.TabIndex = 15;
             this.label16.Text = "Hasil Filter Data (GRID)";
             // 
-            // dataGridView2
+            // dataGridView1
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 180);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(478, 150);
-            this.dataGridView2.TabIndex = 16;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(15, 180);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(478, 150);
+            this.dataGridView1.TabIndex = 16;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // bindingSource1
             // 
@@ -234,19 +235,20 @@
             this.btnClose.TabIndex = 20;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // dtpTanggal1
             // 
             this.dtpTanggal1.Location = new System.Drawing.Point(123, 116);
             this.dtpTanggal1.Name = "dtpTanggal1";
-            this.dtpTanggal1.Size = new System.Drawing.Size(200, 20);
+            this.dtpTanggal1.Size = new System.Drawing.Size(200, 22);
             this.dtpTanggal1.TabIndex = 21;
             // 
             // dtpTanggal2
             // 
             this.dtpTanggal2.Location = new System.Drawing.Point(386, 122);
             this.dtpTanggal2.Name = "dtpTanggal2";
-            this.dtpTanggal2.Size = new System.Drawing.Size(200, 20);
+            this.dtpTanggal2.Size = new System.Drawing.Size(200, 22);
             this.dtpTanggal2.TabIndex = 22;
             // 
             // frm1
@@ -258,7 +260,7 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtUsia2);
@@ -275,7 +277,7 @@
             this.Name = "frm1";
             this.Text = "Form 1";
             this.Load += new System.EventHandler(this.frm1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soalProgrammerdbDataSet1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soal_ProgrammerdbDataSet1)).EndInit();
@@ -296,7 +298,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
     
-        private System.Windows.Forms.DataGridView dataGridView1;
+        
         private System.Windows.Forms.Label label8;
         private soal_ProgrammerdbDataSet soal_ProgrammerdbDataSet;
         private System.Windows.Forms.BindingSource tablekaryawanBindingSource;
@@ -322,7 +324,7 @@
         private System.Windows.Forms.TextBox txtnamaKaryawan2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource soalProgrammerdbDataSet1BindingSource;
         private soal_ProgrammerdbDataSet soal_ProgrammerdbDataSet1;
         private System.Windows.Forms.BindingSource bindingSource1;

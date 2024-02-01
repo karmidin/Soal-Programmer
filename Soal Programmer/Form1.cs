@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -10,12 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Soal_Programmer
 {
     public partial class frm1 : Form
     {
-        SqlDataAdapter da;
-        DataSet ds;
+        string connectionString = @"Data Source=LAPTOP-PKU2D3E7\SQLEXPRESS;
+                                  Initial Catalog=soal_Programmerdb;Trusted_Connection=True;";
+        SqlConnection con;
+        SqlCommand command;
+        SqlDataAdapter dataAdapter;
+        DataTable dtRecord;
+        
+
         public frm1()
         {
             InitializeComponent();
@@ -24,54 +32,106 @@ namespace Soal_Programmer
         {
             // TODO: This line of code loads data into the 'soal_ProgrammerdbDataSet1.table_karyawan' table. You can move, or remove it, as needed.
             this.table_karyawanTableAdapter1.Fill(this.soal_ProgrammerdbDataSet1.table_karyawan);
-
-            da = new SqlDataAdapter("SELECT * FROM table_karyawan", "server = LAPTOP-PKU2D3E7\\SQLEXPRESS; database = soal_Programmerdb;Trusted_Connection=True;");
-            ds = new DataSet();
-            da.Fill(ds, "table_karyawan");
-            dataGridView2.DataSource = ds.Tables["table_karyawan"].DefaultView;
-
+            using (con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (command = new SqlCommand("SELECT * FROM table_karyawan", con))
+                {
+                    dataAdapter = new SqlDataAdapter(command);
+                    dtRecord = new DataTable();
+                    dataAdapter.Fill(dtRecord);
+                    dataGridView1.DataSource = dtRecord;
+                }
+                con.Close();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           
             if (txtnamaKaryawan1.Text != "")
             {
-                da = new SqlDataAdapter("SELECT * FROM table_karyawan WHERE Nmkaryawan = '" + txtnamaKaryawan1.Text + "';", "server = LAPTOP-PKU2D3E7\\SQLEXPRESS; database = soal_Programmerdb;Trusted_Connection=True;");
-                ds = new DataSet();
-                da.Fill(ds, "table_karyawan");
-                dataGridView2.DataSource = ds.Tables["table_karyawan"].DefaultView;
-            }else if(txtUsia1.Text != "" && txtUsia2.Text != "")
-            {
-                da = new SqlDataAdapter("SELECT * from table_karyawan WHERE Usia > "+txtUsia1.Text+" AND Usia < "+txtUsia2.Text+";", "server = LAPTOP-PKU2D3E7\\SQLEXPRESS; database = soal_Programmerdb;Trusted_Connection=True;");
-                ds = new DataSet();
-                da.Fill(ds, "table_karyawan");
-                dataGridView2.DataSource = ds.Tables["table_karyawan"].DefaultView;
-            }else if(dtpTanggal1.Text !="" && dtpTanggal2.Text!= "")
-            {
-                da = new SqlDataAdapter("SELECT * from table_karyawan WHERE TglMasukKerja > '" + dtpTanggal1.Value.ToShortDateString()+ "' AND TglMasukKerja < '" + dtpTanggal2.Value.ToShortDateString() + "';", "server = LAPTOP-PKU2D3E7\\SQLEXPRESS; database = soal_Programmerdb;Trusted_Connection=True;");
-                ds = new DataSet();
-                da.Fill(ds, "table_karyawan");
-                dataGridView2.DataSource = ds.Tables["table_karyawan"].DefaultView;
+                using (con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (command = new SqlCommand("SELECT * FROM table_karyawan WHERE Nmkaryawan = '" + txtnamaKaryawan1.Text + "';", con))
+                    {
+                        dataAdapter = new SqlDataAdapter(command);
+                        dtRecord = new DataTable();
+                        dataAdapter.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                    }
+                    con.Close();
+                }
             }
+             else if(txtUsia1.Text != "" && txtUsia2.Text != "")
+            {
+                using (con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (command = new SqlCommand("SELECT * from table_karyawan WHERE Usia > " + txtUsia1.Text + " AND Usia < " + txtUsia2.Text + ";", con))
+                    {
+                        dataAdapter = new SqlDataAdapter(command);
+                        dtRecord = new DataTable();
+                        dataAdapter.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                    }
+                    con.Close();
+                }
 
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
+            }
+            else if(dtpTanggal1.Text !="" && dtpTanggal2.Text!= "")
+            {
+                using (con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    using (command = new SqlCommand("SELECT * from table_karyawan WHERE TglMasukKerja > '" + dtpTanggal1.Value.ToShortDateString() + "' AND TglMasukKerja < '" + dtpTanggal2.Value.ToShortDateString() + "';", con))
+                    {
+                        dataAdapter = new SqlDataAdapter(command);
+                        dtRecord = new DataTable();
+                        dataAdapter.Fill(dtRecord);
+                        dataGridView1.DataSource = dtRecord;
+                    }
+                    con.Close();
+                }
+            }
 
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            frm2 form2 = new frm2();
+            form2.ShowDialog();
+
+            using (con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (command = new SqlCommand("SELECT * FROM table_karyawan", con))
+                {
+                    dataAdapter = new SqlDataAdapter(command);
+                    dtRecord = new DataTable();
+                    dataAdapter.Fill(dtRecord);
+                    dataGridView1.DataSource = dtRecord;
+                }
+                con.Close();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (this.dataGridView2.SelectedRows.Count > 0)
+            if (this.dataGridView1.SelectedRows.Count > 0)
             {
-                dataGridView2.Rows.RemoveAt(this.dataGridView2.SelectedRows[0].Index);
+                dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
             }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

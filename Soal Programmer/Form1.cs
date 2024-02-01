@@ -23,7 +23,9 @@ namespace Soal_Programmer
         SqlDataAdapter dataAdapter;
         DataTable dtRecord;
         String IDKaryawan;
-        
+        DataGridViewRow selectedRow;
+
+
 
         public frm1()
         {
@@ -121,10 +123,9 @@ namespace Soal_Programmer
         {
             if (this.dataGridView1.SelectedRows.Count > 0)
             {
-                //dataGridView1.Rows.RemoveAt(this.dataGridView1.SelectedRows[0].Index);
-                DataGridViewRow selectedRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                selectedRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
                 IDKaryawan = Convert.ToString(selectedRow.Cells["IDKaryawan"].Value);
-                //MessageBox.Show(IDKaryawan);
+                
                 using (con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -147,6 +148,27 @@ namespace Soal_Programmer
             }
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            selectedRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+            IDKaryawan = Convert.ToString(selectedRow.Cells["IDKaryawan"].Value);
+
+            frm2 form2 = new frm2(IDKaryawan);
+            form2.ShowDialog();
+
+            using (con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (command = new SqlCommand("SELECT * FROM table_karyawan", con))
+                {
+                    dataAdapter = new SqlDataAdapter(command);
+                    dtRecord = new DataTable();
+                    dataAdapter.Fill(dtRecord);
+                    dataGridView1.DataSource = dtRecord;
+                }
+                con.Close();
+            }
+        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -158,5 +180,7 @@ namespace Soal_Programmer
             
           
         }
+
+       
     }
 }

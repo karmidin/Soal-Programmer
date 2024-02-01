@@ -18,10 +18,39 @@ namespace Soal_Programmer
         SqlCommand command;
         SqlDataAdapter dataAdapter;
         DataTable dtRecord;
+        String IDKaryawan;
+
         string connectionString = @"Data Source=LAPTOP-PKU2D3E7\SQLEXPRESS;Initial Catalog=soal_Programmerdb;Trusted_Connection=True;";
         public frm2()
         {
             InitializeComponent();
+            btnSaveEdit.Text = "Save";
+        }
+
+        public frm2(string iDKaryawan)
+        {
+            InitializeComponent();
+            IDKaryawan = iDKaryawan;
+            btnSaveEdit.Text = "Update";
+
+            using (con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (command = new SqlCommand("SELECT * FROM table_karyawan WHERE IDkaryawan = @param1", con))
+                {
+                    command.Parameters.Add("@param1", SqlDbType.VarChar, 30).Value = iDKaryawan;
+                    dataAdapter = new SqlDataAdapter(command);
+                    dtRecord = new DataTable();
+                    dataAdapter.Fill(dtRecord);
+                }
+                con.Close();
+                txtId.Text = dtRecord.Rows[0]["IDKaryawan"].ToString();
+                txtNama.Text = dtRecord.Rows[0]["NmKaryawan"].ToString();
+                txtUsia.Text = dtRecord.Rows[0]["Usia"].ToString();
+                dtpTanggal.Text = dtRecord.Rows[0]["TglMasukKerja"].ToString();
+            }
+
+            txtId.Enabled = false;
         }
 
         private void btnSaveEdit_Click(object sender, EventArgs e)

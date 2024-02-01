@@ -108,9 +108,9 @@
             // 
             // btnSaveEdit
             // 
-            this.btnSaveEdit.Location = new System.Drawing.Point(549, 140);
+            this.btnSaveEdit.Location = new System.Drawing.Point(525, 140);
             this.btnSaveEdit.Name = "btnSaveEdit";
-            this.btnSaveEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveEdit.Size = new System.Drawing.Size(99, 41);
             this.btnSaveEdit.TabIndex = 9;
             this.btnSaveEdit.UseVisualStyleBackColor = true;
             this.btnSaveEdit.Click += new System.EventHandler(this.btnSaveEdit_Click);

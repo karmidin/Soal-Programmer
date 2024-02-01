@@ -55,21 +55,43 @@ namespace Soal_Programmer
 
         private void btnSaveEdit_Click(object sender, EventArgs e)
         {
-            using (con = new SqlConnection(connectionString))
+            try
             {
-                con.Open();
-                using (command = new SqlCommand("INSERT INTO table_karyawan VALUES (@param1,@param2,@param3,@param4);", con))
+                using (con = new SqlConnection(connectionString))
                 {
-                    command.Parameters.Add("@param1", SqlDbType.VarChar,30).Value = txtId.Text;
-                    command.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = txtNama.Text;
-                    command.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = dtpTanggal.Value.ToShortDateString();
-                    command.Parameters.Add("@param4", SqlDbType.Int).Value = txtUsia.Text;
-                    command.CommandType = CommandType.Text;
-                    command.ExecuteNonQuery();
+                    con.Open();
+                    if (IDKaryawan == "")
+                    {
+                        using (command = new SqlCommand("INSERT INTO table_karyawan VALUES (@param1,@param2,@param3,@param4);", con))
+                        {
+                            command.Parameters.Add("@param1", SqlDbType.VarChar, 30).Value = txtId.Text;
+                            command.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = txtNama.Text;
+                            command.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = dtpTanggal.Value.ToShortDateString();
+                            command.Parameters.Add("@param4", SqlDbType.Int).Value = txtUsia.Text;
+                            command.CommandType = CommandType.Text;
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        using (command = new SqlCommand("UPDATE table_karyawan SET NmKaryawan = @param2, TglMasukKerja= @param3, Usia = @param4 WHERE IDKaryawan = @param1;", con))
+                        {
+                            command.Parameters.Add("@param1", SqlDbType.VarChar, 30).Value = txtId.Text;
+                            command.Parameters.Add("@param2", SqlDbType.VarChar, 30).Value = txtNama.Text;
+                            command.Parameters.Add("@param3", SqlDbType.VarChar, 50).Value = dtpTanggal.Value.ToShortDateString();
+                            command.Parameters.Add("@param4", SqlDbType.Int).Value = txtUsia.Text;
+                            command.CommandType = CommandType.Text;
+                            command.ExecuteNonQuery();
+                        }
+                    }
                 }
-                con.Close();
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Pastikan mengisi data dengan benar");
+            }
+            con.Close();
         }
     }
 }
